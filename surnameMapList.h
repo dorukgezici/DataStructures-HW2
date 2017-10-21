@@ -1,10 +1,8 @@
-//
-//  surnameMapList.h
-//  Data HW - 2
-//
-//  Created by Doruk Gezici on 17.10.2017.
-//  Copyright © 2017 Doruk Gezici. All rights reserved.
-//
+/* @Author
+ * Student Name: Ali Doruk Gezici
+ * Student ID : 150150301
+ * Date: 17.10.2017
+ */
 
 #ifndef surnameMapList_h
 #define surnameMapList_h
@@ -16,14 +14,16 @@ struct surnameMapList {
     surnameMap *head;
     int count;
     // Functions
+    surnameMap* operator[](int i);
     void createList();
     void insertAll(std::string file_name);
     void insertNewRecord(std::string name, std::string surname);
-    void deleteStudent();
-    void deleteSurnameNode();
+    void deleteStudent(std::string name, std::string surname);
+    void deleteSurnameNode(std::string surname);
     void updateList();
     void writeToFile();
-    void sort();
+    void sort(int left, int right);
+    surnameMap* getSurnameMap(std::string surname);
 };
 
 #endif /* surnameMapList_h */

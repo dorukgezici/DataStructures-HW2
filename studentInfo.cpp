@@ -1,10 +1,8 @@
-//
-//  studentInfo.cpp
-//  Data HW - 2
-//
-//  Created by Doruk Gezici on 17.10.2017.
-//  Copyright © 2017 Doruk Gezici. All rights reserved.
-//
+/* @Author
+ * Student Name: Ali Doruk Gezici
+ * Student ID : 150150301
+ * Date: 17.10.2017
+ */
 
 #include "studentInfo.h"
 #include <string>
