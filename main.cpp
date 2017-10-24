@@ -76,11 +76,18 @@ void execute_choice(int choice, surnameMapList *surnames) {
             break;
         } case 5: {
             string surname;
-            cout << "Surname you want to delete: ";
+            cout << "Surname you want to delete (First char CAPITAL): ";
             cin >> surname;
             surnames->deleteSurnameNode(surname);
             break;
         } case 6: {
+            string name;
+            cout << "Name of the person you want to update: ";
+            cin >> name;
+            string surname;
+            cout << "Surname: ";
+            cin >> surname;
+            surnames->updateList(name, surname);
             break;
         } case 7: {
             cout << "Writing to file emailList.txt..." << endl;

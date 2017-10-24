@@ -20,9 +20,10 @@ struct surnameMap {
     // Functions
     studentInfo* operator[](int i);
     void createInfoList();
-    void insert(std::string name, std::string surname);
+    void insert(std::string name);
     void sort(int left, int right);
-    studentInfo* getStudent(std::string name, std::string surname);
+    studentInfo* getStudent(std::string name);
+    int getEmailCount(std::string name);
 };
 
 #endif /* surnameMap_h */

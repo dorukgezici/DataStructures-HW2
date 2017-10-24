@@ -6,7 +6,6 @@
 
 #include "surnameMap.h"
 #include "studentInfo.h"
-#include <iostream>
 
 studentInfo* surnameMap::operator[](int i) {
     studentInfo *ptr = head;
@@ -21,12 +20,12 @@ void surnameMap::createInfoList() {
     return;
 }
 
-void surnameMap::insert(std::string name, std::string surname) {
+void surnameMap::insert(std::string name) {
     if (!head) {
         head = new studentInfo;
         head->name = name;
         head->surname = surname;
-        head->generateEmail(count);
+        head->generateEmail(getEmailCount(name));
         head->next = nullptr;
         head->prev = nullptr;
         tail = head;
@@ -34,7 +33,7 @@ void surnameMap::insert(std::string name, std::string surname) {
         studentInfo *s = new studentInfo;
         s->name = name;
         s->surname = surname;
-        s->generateEmail(count);
+        s->generateEmail(getEmailCount(name));
         s->prev = tail;
         s->next = nullptr;
         tail->next = s;
@@ -43,11 +42,32 @@ void surnameMap::insert(std::string name, std::string surname) {
     return;
 }
 
-studentInfo* surnameMap::getStudent(std::string name, std::string surname) {
+studentInfo* surnameMap::getStudent(std::string name) {
     studentInfo *ptr = head;
     for (int i = 0; i < count; i++) {
         if (ptr->name == name && ptr->surname == surname) return ptr;
         ptr = ptr->next;
     }
     return nullptr;
+}
+
+int surnameMap::getEmailCount(std::string name) {
+    studentInfo *ptr = head;
+    int highest_n = 0;
+    for (int i = 0; i < count; i++) {
+        int n = 0;
+        for (int j = 0; j < ptr->email.length() - 11; j++) {
+            char a = ptr->email[surname.length() + j];
+            char b = tolower(name[j]);
+            if (a == '@') { // First name in surnameMap
+                n++;
+                break;
+            } else if (a == b) n++;
+            else if (!b) n++; // If name's length isn't enough, add numbers in studentInfo::generateEmail
+            else break;
+        }
+        if (n > highest_n) highest_n = n;
+        ptr = ptr->next;
+    }
+    return highest_n;
 }
