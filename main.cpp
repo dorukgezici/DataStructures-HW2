@@ -3,6 +3,8 @@
  * Student ID : 150150301
  * Date: 17.10.2017
  */
+// Compiled as C++11 using the command:
+// `g++ -std=c++0x *.cpp`
 
 #include <iostream>
 #include <string>
