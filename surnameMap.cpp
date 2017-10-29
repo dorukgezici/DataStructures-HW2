@@ -42,6 +42,10 @@ void surnameMap::insert(std::string name) {
     return;
 }
 
+void surnameMap::sort(int left, int right) {
+    return;
+}
+
 studentInfo* surnameMap::getStudent(std::string name) {
     studentInfo *ptr = head;
     for (int i = 0; i < count; i++) {
@@ -70,4 +74,10 @@ int surnameMap::getEmailCount(std::string name) {
         ptr = ptr->next;
     }
     return highest_n;
+}
+
+surnameMap* surnameMap::getPrev() {
+    surnameMap *ptr = this;
+    while (ptr->next != this) ptr = ptr->next;
+    return ptr;
 }

@@ -22,7 +22,7 @@ struct surnameMapList {
     void deleteSurnameNode(std::string surname);
     void updateList(std::string name, std::string surname);
     void writeToFile();
-    void sort(int left, int right);
+    void sort();
     surnameMap* getSurnameMap(std::string surname);
 };
 

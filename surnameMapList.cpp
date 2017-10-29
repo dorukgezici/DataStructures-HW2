@@ -13,6 +13,7 @@
 using namespace std;
 
 surnameMap* surnameMapList::operator[](int i) {
+    if (i >= count) return nullptr;
     surnameMap* ptr = head;
     for (int j = 1; j <= i; j++) ptr = ptr->next;
     return ptr;
@@ -36,6 +37,7 @@ void surnameMapList::insertAll(string file_name) {
         getline(ss, surname, '\r');
         insertNewRecord(name, surname);
     }; file.close();
+    sort();
     return;
 }
 
@@ -65,6 +67,7 @@ void surnameMapList::insertNewRecord(string name, string surname) {
         tmp->next = s;
         count++;
     }
+    sort();
     return;
 }
 
@@ -106,6 +109,7 @@ void surnameMapList::deleteSurnameNode(string surname) {
     prev->next = map->next;
     delete map;
     count--;
+    sort();
     return;
 }
 
@@ -127,6 +131,7 @@ void surnameMapList::updateList(string name, string surname) {
         ptr->email = "";
         ptr->generateEmail(map->getEmailCount(new_name));
     }
+    sort();
     return;
 }
 
@@ -147,41 +152,26 @@ void surnameMapList::writeToFile() {
     return;
 }
 
-void surnameMapList::sort(int left, int right) {
-//    int i = left, j = right;
-//    surnameMap* tmp;
-//    int k = static_cast<int>((left + right) / 2);
-//    surnameMap *pivot = operator[](k);
-//    /* partition */
-//    while (i <= j) {
-//        while (operator[](i)->surname < pivot->surname)
-//            i++;
-//        while (operator[](j)->surname > pivot->surname)
-//            j--;
-//        if (i <= j) {
-//            if (i == 0) {
-//                surnameMap *ptr = operator[](0);
-//                operator[](j)->next = operator[](1);
-//                head = operator[](j);
-//                operator[](j - 1)->next = ptr;
-//                ptr->next = operator[](j);
-//            } else {
-//                
-//            }
-//            tmp = operator[](i);
-//            operator[](i)->next->prev = operator[](j);
-//            
-//            operator[](j)->surname = tmp;
-//            i++;
-//            j--;
-//        }
-//    };
-//    /* recursion */
-//    if (left < j)
-//        sort(left, j);
-//    if (i < right)
-//        sort(i, right);
-    return;
+void surnameMapList::sort() {
+    int j = 0;
+    bool working = true;
+    while (working) {
+        j++;
+        working = false;
+        for (int i = 0; i < count - j; i++) {
+            surnameMap *ptr = operator[](i);
+            surnameMap *ptr2 = operator[](i + 1);
+            if (ptr->surname > ptr2->surname) {
+                ptr->getPrev()->next = ptr2;
+                surnameMap *tmp = ptr2->next;
+                ptr2->next = ptr->next;
+                ptr2->getPrev()->next = ptr;
+                ptr->next = tmp;
+                if (i == 0) head = ptr2;
+                working = true;
+            }
+        }
+    }
 }
 
 surnameMap* surnameMapList::getSurnameMap(string surname) {

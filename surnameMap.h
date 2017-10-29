@@ -24,6 +24,7 @@ struct surnameMap {
     void sort(int left, int right);
     studentInfo* getStudent(std::string name);
     int getEmailCount(std::string name);
+    surnameMap *getPrev();
 };
 
 #endif /* surnameMap_h */
